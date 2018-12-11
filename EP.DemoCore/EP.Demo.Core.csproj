@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <DefineConstants>CORE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="EP.Analyzer.Biblio.Core">
+      <HintPath>..\EP.SdkCore\EP.Analyzer.Biblio.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EP.Analyzer.Decree.Core">
+      <HintPath>..\EP.SdkCore\EP.Analyzer.Decree.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EP.Analyzer.Location.Core">
+      <HintPath>..\EP.SdkCore\EP.Analyzer.Location.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EP.Analyzer.Misc.Core">
+      <HintPath>..\EP.SdkCore\EP.Analyzer.Misc.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EP.Analyzer.Organization.Core">
+      <HintPath>..\EP.SdkCore\EP.Analyzer.Organization.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EP.Analyzer.Person.Core">
+      <HintPath>..\EP.SdkCore\EP.Analyzer.Person.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EP.Analyzer.Semantic.Core">
+      <HintPath>..\EP.SdkCore\EP.Analyzer.Semantic.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EP.Analyzer.Util.Core">
+      <HintPath>..\EP.SdkCore\EP.Analyzer.Util.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EP.Core.Core">
+      <HintPath>..\EP.SdkCore\EP.Core.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EP.Explanatory.Core">
+      <HintPath>..\EP.SdkCore\EP.Explanatory.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EP.Morphology.Core">
+      <HintPath>..\EP.SdkCore\EP.Morphology.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+
+</Project>

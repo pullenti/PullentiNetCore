@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EP.Explanatory.Core</name>
+    </assembly>
+    <members>
+        <member name="T:EP.Morph.DerivateGroup">
+            <summary>
+            Дериватная группа
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateGroup.NotGenerate">
+            <summary>
+            Не образовывать группы путём перебора приставок
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateGroup.IsGenerated">
+            <summary>
+            Группа сгенерирована на основе перебора приставок (runtime)
+            </summary>
+        </member>
+        <member name="P:EP.Morph.DerivateGroup.Transitive">
+            <summary>
+            Признак транзитивности глаголов
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateGroup.Changed">
+            <summary>
+            Это для локальных изменений при слиянии
+            </summary>
+        </member>
+        <member name="M:EP.Morph.DerivateGroup.ContainsWord(System.String,EP.Morph.MorphLang)">
+            <summary>
+            Содержит ли группа слово
+            </summary>
+            <param name="word">слово</param>
+            <param name="lang">возможный язык</param>
+            <returns></returns>
+        </member>
+        <member name="T:EP.Morph.Explanatory">
+            <summary>
+            Сервис для получение толковой информации о словах.
+            В настоящий момент поддержаны русский и украинский языки.
+            </summary>
+        </member>
+        <member name="M:EP.Morph.Explanatory.Initialize(EP.Morph.MorphLang)">
+            <summary>
+            Инициализация внутренних словарей.
+            Можно не вызывать, но тогда будет автоматически вызвано при первом обращении,
+            и соответственно первое обращение отработает на несколько секунд дольше.
+            </summary>
+            <remarks>Русский и украинский языки грузятся одновременно!</remarks>
+            <param name="langs">по умолчанию, русский с украинским</param>
+        </member>
+        <member name="P:EP.Morph.Explanatory.LoadedLanguages">
+            <summary>
+            Языки, морфологические словари для которых загружены в память
+            </summary>
+        </member>
+        <member name="M:EP.Morph.Explanatory.LoadLanguages(EP.Morph.MorphLang)">
+            <summary>
+            Загрузить язык(и), если они ещё не загружены
+            </summary>
+            <param name="langs"></param>
+        </member>
+        <member name="M:EP.Morph.Explanatory.UnloadLanguages(EP.Morph.MorphLang)">
+            <summary>
+            Выгрузить язык(и), если они больше не нужны
+            </summary>
+            <param name="langs"></param>
+        </member>
+        <member name="M:EP.Morph.Explanatory.FindDerivates(System.String,System.Boolean,EP.Morph.MorphLang)">
+            <summary>
+            Найти для слова дериативные группы, в которые входит это слово
+            (групп может быть несколько, но в большинстве случаев - одна)
+            </summary>
+            <param name="word"></param>
+            <param name="tryVariants"></param>
+            <param name="lang"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EP.Morph.Explanatory.FindWords(System.String,EP.Morph.MorphLang)">
+            <summary>
+            Найти для слова его толковую информацию (среди деривативных групп)
+            </summary>
+            <param name="word">нормальная форма слова</param>
+            <param name="lang">возможный язык</param>
+            <returns></returns>
+        </member>
+        <member name="M:EP.Morph.Explanatory.GetWordClassVar(System.String,EP.Morph.MorphClass,EP.Morph.MorphLang)">
+            <summary>
+            Получить вариант для слова аналог нужного типа.
+            Например, для "ГЛАГОЛ" вариант прилагательного: "ГЛАГОЛЬНЫЙ"
+            </summary>
+            <param name="word">исходное слово</param>
+            <param name="cla">нужный тип</param>
+            <param name="lang">возможный язык</param>
+            <returns>вариант или null при ненахождении</returns>
+        </member>
+        <member name="M:EP.Morph.Explanatory.IsAnimated(System.String,EP.Morph.MorphLang)">
+            <summary>
+            Может ли быть одушевлённым
+            </summary>
+            <param name="word"></param>
+            <param name="lang">язык (по умолчанию, русский)</param>
+            <returns></returns>
+        </member>
+        <member name="M:EP.Morph.Explanatory.IsNamed(System.String,EP.Morph.MorphLang)">
+            <summary>
+            Может ли иметь собственное имя
+            </summary>
+            <param name="word"></param>
+            <param name="lang">язык (по умолчанию, русский)</param>
+            <returns></returns>
+        </member>
+        <member name="T:EP.Morph.DerivateWord">
+            <summary>
+            Слово толкового словаря
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Group">
+            <summary>
+            Деривативаная группа, содержащая данное слово
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Spelling">
+            <summary>
+            Само слово в нормальной форме
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Class">
+            <summary>
+            Часть речи
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Aspect">
+            <summary>
+            Совершенный\несовершенный
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Voice">
+            <summary>
+            Действительный\страдательный
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Tense">
+            <summary>
+            Время (для причастий)
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Reflexive">
+            <summary>
+            Возвратный
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Lang">
+            <summary>
+            Язык
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Attrs">
+            <summary>
+            Дополнительные характеристики
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Nexts">
+            <summary>
+            Возможные продолжения (следующее слово):
+            Пары: (Предлог, Падежи)
+            </summary>
+        </member>
+        <member name="T:EP.Morph.ExplanWordAttr">
+            <summary>
+            Дополнительные характеристики слова
+            </summary>
+        </member>
+        <member name="P:EP.Morph.ExplanWordAttr.IsUndefined">
+            <summary>
+            Неопределённый тип
+            </summary>
+        </member>
+        <member name="P:EP.Morph.ExplanWordAttr.IsAnimated">
+            <summary>
+            Одушевлённое
+            </summary>
+        </member>
+        <member name="P:EP.Morph.ExplanWordAttr.IsNamed">
+            <summary>
+            Может иметь собственное имя
+            </summary>
+        </member>
+        <member name="P:EP.Morph.ExplanWordAttr.IsNumbered">
+            <summary>
+            Может иметь номер (например, Олимпиада 80)
+            </summary>
+        </member>
+        <member name="P:EP.Morph.ExplanWordAttr.IsMeasured">
+            <summary>
+            Может ли иметь числовую характеристику (длина, количество, деньги ...)
+            </summary>
+        </member>
+        <member name="P:EP.Morph.ExplanWordAttr.IsEmoPositive">
+            <summary>
+            Позитивная окраска
+            </summary>
+        </member>
+        <member name="P:EP.Morph.ExplanWordAttr.IsEmoNegative">
+            <summary>
+            Негативная окраска
+            </summary>
+        </member>
+        <member name="P:EP.Morph.ExplanWordAttr.IsAnimal">
+            <summary>
+            Это животное, а не человек (для IsAnimated = true)
+            </summary>
+        </member>
+        <member name="P:EP.Morph.ExplanWordAttr.IsCanPersonAfter">
+            <summary>
+            За словом может быть персона в родительном падеже (слуга Хозяина, отец Ивана ...)
+            </summary>
+        </member>
+        <member name="F:EP.Morph.ExplanWordAttr.Undefined">
+            <summary>
+            Неопределённое
+            </summary>
+        </member>
+        <member name="F:EP.Morph.Internal.ExplanTreeNode.Nodes">
+            <summary>
+            Движение дальше по дереву
+            </summary>
+        </member>
+        <member name="F:EP.Morph.Internal.ExplanTreeNode.Groups">
+            <summary>
+            Конечные правила
+            </summary>
+        </member>
+    </members>
+</doc>
