@@ -2693,6 +2693,16 @@
             <param name="dict"></param>
             <returns></returns>
         </member>
+        <member name="P:EP.Ner.TextToken.IsAnd">
+            <summary>
+            Это соединительный союз И (на всех языках)
+            </summary>
+        </member>
+        <member name="P:EP.Ner.TextToken.IsOr">
+            <summary>
+            Это соединительный союз ИЛИ (на всех языках)
+            </summary>
+        </member>
         <member name="P:EP.Ner.TextToken.IsPureVerb">
             <summary>
             Признак того, что это чистый глагол

@@ -306,13 +306,14 @@
             <param name="text2">второй текст</param>
             <returns>0 - ничего общего, 100 - полное соответствие (тождество)</returns>
         </member>
-        <member name="M:EP.Ner.Definition.DefinitionAnalyzer.GetConcepts(System.String)">
+        <member name="M:EP.Ner.Definition.DefinitionAnalyzer.GetConcepts(System.String,System.Boolean)">
             <summary>
             Выделить ключевые концепты из текста.
             Концепт - это нормализованная комбинация ключевых слов, причём дериватная нормализация
             (СЛУЖИТЬ -> СЛУЖБА).
             </summary>
             <param name="txt">текст</param>
+            <param name="doNormalizeForEnglish">делать ли для английского языка нормализацию по дериватам</param>
             <returns>список концептов</returns>
         </member>
         <member name="T:EP.Ner.Definition.Internal.ParenthesisToken">
