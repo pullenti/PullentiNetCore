@@ -6,8 +6,7 @@
     <members>
         <member name="T:EP.Ner.Business.BusinessAnalyzer">
             <summary>
-            Семантический анализатор для бизнес-фактов
-            (относится к специфическим анализаторам)
+            Анализатор для бизнес-фактов
             </summary>
         </member>
         <member name="T:EP.Ner.Business.Internal.ResourceHelper">
@@ -293,9 +292,14 @@
             Звонить
             </summary>
         </member>
+        <member name="T:EP.Ner.Named.NamedEntityAnalyzer">
+            <summary>
+            Анализатор мелких именованных сущностей (планеты, памятники, здания, местоположения, планеты и пр.)
+            </summary>
+        </member>
         <member name="T:EP.Ner.Named.NamedEntityReferent">
             <summary>
-            Текоторые мелкие именованные сущности сущность
+            Текоторые мелкие именованные сущности (планеты, памятники, здания, местоположения, планеты и пр.)
             </summary>
         </member>
         <member name="P:EP.Ner.Named.NamedEntityReferent.Kind">
@@ -310,7 +314,7 @@
         </member>
         <member name="T:EP.Ner.Named.NamedEntityKind">
             <summary>
-            Разновидности организаций
+            Разновидности мелких именованных сущностей
             </summary>
         </member>
         <member name="F:EP.Ner.Named.NamedEntityKind.Undefined">
@@ -345,12 +349,37 @@
         </member>
         <member name="T:EP.Ner.Sentiment.SentimentAnalyzer">
             <summary>
-            Семантический анализатор выделения персон
+            Анализатор для сентиментов (эмоциональная оценка)
             </summary>
         </member>
         <member name="T:EP.Ner.Sentiment.SentimentReferent">
             <summary>
             Фрагмент, соответсвующий сентиментной оценке
+            </summary>
+        </member>
+        <member name="T:EP.Ner.Sentiment.SentimentKind">
+            <summary>
+            Тип сентимента
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Sentiment.SentimentKind.Positive">
+            <summary>
+            Положительный
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Sentiment.SentimentKind.Negative">
+            <summary>
+            Отрицательный
+            </summary>
+        </member>
+        <member name="T:EP.Ner.Transport.TransportAnalyzer">
+            <summary>
+            Анализатор транспортных стредств
+            </summary>
+        </member>
+        <member name="T:EP.Ner.Transport.TransportReferent">
+            <summary>
+            Транспортное средство
             </summary>
         </member>
         <member name="P:EP.Ner.Transport.TransportReferent.Kind">
@@ -360,7 +389,17 @@
         </member>
         <member name="T:EP.Ner.Transport.TransportKind">
             <summary>
-            Разновидности организаций
+            Разновидности транспортных средств
+            </summary>
+        </member>
+        <member name="T:EP.Ner.Weapon.WeaponAnalyzer">
+            <summary>
+            Анализатор выделения оружия
+            </summary>
+        </member>
+        <member name="T:EP.Ner.Weapon.WeaponReferent">
+            <summary>
+            Оружие
             </summary>
         </member>
     </members>

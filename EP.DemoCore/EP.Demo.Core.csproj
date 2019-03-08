@@ -13,6 +13,9 @@
     <Reference Include="EP.Analyzer.Decree.Core">
       <HintPath>..\EP.SdkCore\EP.Analyzer.Decree.Core.dll</HintPath>
     </Reference>
+    <Reference Include="EP.Analyzer.Goods.Core">
+      <HintPath>..\EP.SdkCore\EP.Analyzer.Goods.Core.dll</HintPath>
+    </Reference>
     <Reference Include="EP.Analyzer.Location.Core">
       <HintPath>..\EP.SdkCore\EP.Analyzer.Location.Core.dll</HintPath>
     </Reference>

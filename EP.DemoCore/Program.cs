@@ -34,6 +34,7 @@ namespace Demo
             EP.Ner.Titlepage.TitlePageAnalyzer.Initialize();
             EP.Ner.Booklink.BookLinkAnalyzer.Initialize();
             EP.Ner.Named.NamedEntityAnalyzer.Initialize();
+            EP.Ner.Goods.GoodsAnalyzer.Initialize();
 
             sw.Stop();
             Console.WriteLine("OK (by {0} ms), version {1}", (int)sw.ElapsedMilliseconds, ProcessorService.Version);

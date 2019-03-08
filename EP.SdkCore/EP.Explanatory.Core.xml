@@ -9,6 +9,21 @@
             Дериватная группа
             </summary>
         </member>
+        <member name="F:EP.Morph.DerivateGroup.Words">
+            <summary>
+            Слова дериватной группы
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateGroup.Prefix">
+            <summary>
+            Приставка (при образовании из другой группы)
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateGroup.IsDummy">
+            <summary>
+            Псевдогруппа (является основой для других групп)
+            </summary>
+        </member>
         <member name="F:EP.Morph.DerivateGroup.NotGenerate">
             <summary>
             Не образовывать группы путём перебора приставок
@@ -21,12 +36,34 @@
         </member>
         <member name="P:EP.Morph.DerivateGroup.Transitive">
             <summary>
-            Признак транзитивности глаголов
+            Признак транзитивности группы (не только глаголов!)
             </summary>
         </member>
-        <member name="F:EP.Morph.DerivateGroup.Changed">
+        <member name="P:EP.Morph.DerivateGroup.RevAgentCase">
             <summary>
-            Это для локальных изменений при слиянии
+            Падеж агенса для возвратного глагола (0 - именит, 1 - дател, 2 - творит)
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateGroup.Nexts">
+            <summary>
+            Возможные продолжения (следующее слово):
+            Пары: (Предлог, Падежи). 
+            Для транзитивной группы не указываются род.п. (сущ) или вин.п. (глаг)
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateGroup.NextsRef">
+            <summary>
+            Продолжения для возвратных глаголов
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateGroup.Questions">
+            <summary>
+            Возможные вопросы для продолжения
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateGroup.QuestionsRef">
+            <summary>
+            Вопросы для возвратных глаголов
             </summary>
         </member>
         <member name="M:EP.Morph.DerivateGroup.ContainsWord(System.String,EP.Morph.MorphLang)">
@@ -36,6 +73,56 @@
             <param name="word">слово</param>
             <param name="lang">возможный язык</param>
             <returns></returns>
+        </member>
+        <member name="T:EP.Morph.DerivateWord">
+            <summary>
+            Слово толкового словаря
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Group">
+            <summary>
+            Деривативаная группа, содержащая данное слово
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Spelling">
+            <summary>
+            Само слово в нормальной форме
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Class">
+            <summary>
+            Часть речи
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Aspect">
+            <summary>
+            Совершенный\несовершенный
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Voice">
+            <summary>
+            Действительный\страдательный
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Tense">
+            <summary>
+            Время (для причастий)
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Reflexive">
+            <summary>
+            Возвратный
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Lang">
+            <summary>
+            Язык
+            </summary>
+        </member>
+        <member name="F:EP.Morph.DerivateWord.Attrs">
+            <summary>
+            Дополнительные характеристики
+            </summary>
         </member>
         <member name="T:EP.Morph.Explanatory">
             <summary>
@@ -113,62 +200,6 @@
             <param name="lang">язык (по умолчанию, русский)</param>
             <returns></returns>
         </member>
-        <member name="T:EP.Morph.DerivateWord">
-            <summary>
-            Слово толкового словаря
-            </summary>
-        </member>
-        <member name="F:EP.Morph.DerivateWord.Group">
-            <summary>
-            Деривативаная группа, содержащая данное слово
-            </summary>
-        </member>
-        <member name="F:EP.Morph.DerivateWord.Spelling">
-            <summary>
-            Само слово в нормальной форме
-            </summary>
-        </member>
-        <member name="F:EP.Morph.DerivateWord.Class">
-            <summary>
-            Часть речи
-            </summary>
-        </member>
-        <member name="F:EP.Morph.DerivateWord.Aspect">
-            <summary>
-            Совершенный\несовершенный
-            </summary>
-        </member>
-        <member name="F:EP.Morph.DerivateWord.Voice">
-            <summary>
-            Действительный\страдательный
-            </summary>
-        </member>
-        <member name="F:EP.Morph.DerivateWord.Tense">
-            <summary>
-            Время (для причастий)
-            </summary>
-        </member>
-        <member name="F:EP.Morph.DerivateWord.Reflexive">
-            <summary>
-            Возвратный
-            </summary>
-        </member>
-        <member name="F:EP.Morph.DerivateWord.Lang">
-            <summary>
-            Язык
-            </summary>
-        </member>
-        <member name="F:EP.Morph.DerivateWord.Attrs">
-            <summary>
-            Дополнительные характеристики
-            </summary>
-        </member>
-        <member name="F:EP.Morph.DerivateWord.Nexts">
-            <summary>
-            Возможные продолжения (следующее слово):
-            Пары: (Предлог, Падежи)
-            </summary>
-        </member>
         <member name="T:EP.Morph.ExplanWordAttr">
             <summary>
             Дополнительные характеристики слова
@@ -214,9 +245,24 @@
             Это животное, а не человек (для IsAnimated = true)
             </summary>
         </member>
+        <member name="P:EP.Morph.ExplanWordAttr.IsMan">
+            <summary>
+            Это человек, а не животное (для IsAnimated = true)
+            </summary>
+        </member>
         <member name="P:EP.Morph.ExplanWordAttr.IsCanPersonAfter">
             <summary>
             За словом может быть персона в родительном падеже (слуга Хозяина, отец Ивана ...)
+            </summary>
+        </member>
+        <member name="P:EP.Morph.ExplanWordAttr.IsSpaceObject">
+            <summary>
+            Пространственный объект
+            </summary>
+        </member>
+        <member name="P:EP.Morph.ExplanWordAttr.IsTimeObject">
+            <summary>
+            Временной объект
             </summary>
         </member>
         <member name="F:EP.Morph.ExplanWordAttr.Undefined">
@@ -232,6 +278,36 @@
         <member name="F:EP.Morph.Internal.ExplanTreeNode.Groups">
             <summary>
             Конечные правила
+            </summary>
+        </member>
+        <member name="T:EP.Morph.Internal.NextModelQuestion">
+            <summary>
+            Основные вопросы модели управления
+            </summary>
+        </member>
+        <member name="F:EP.Morph.Internal.NextModelQuestion.Where">
+            <summary>
+            Где
+            </summary>
+        </member>
+        <member name="F:EP.Morph.Internal.NextModelQuestion.WhereFrom">
+            <summary>
+            Откуда
+            </summary>
+        </member>
+        <member name="F:EP.Morph.Internal.NextModelQuestion.WhereTo">
+            <summary>
+            Куда
+            </summary>
+        </member>
+        <member name="F:EP.Morph.Internal.NextModelQuestion.When">
+            <summary>
+            Когда
+            </summary>
+        </member>
+        <member name="F:EP.Morph.Internal.NextModelQuestion.WhatToDo">
+            <summary>
+            Что делать (инфинитив за группой)
             </summary>
         </member>
     </members>

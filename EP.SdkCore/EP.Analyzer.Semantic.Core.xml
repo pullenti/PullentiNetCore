@@ -239,7 +239,7 @@
         </member>
         <member name="T:EP.Ner.Semantic.SemanticAnalyzer">
             <summary>
-            Семантический анализатор выделения персон
+            Семантический анализатор 
             </summary>
         </member>
         <member name="F:EP.Ner.Semantic.SemanticAnalyzer.IgnoreActions">

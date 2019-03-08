@@ -6,13 +6,10 @@
     <members>
         <member name="T:EP.Ner.Decree.DecreeAnalyzer">
             <summary>
-            Семантический анализатор для дат и диапазонов дат
+            Анализатор для дат и диапазонов дат
             </summary>
             <summary>
-            Семантический анализатор для дат и диапазонов дат
-            </summary>
-            <summary>
-            Семантический анализатор для дат и диапазонов дат
+            Анализатор для дат и диапазонов дат
             </summary>
         </member>
         <member name="M:EP.Ner.Decree.DecreeAnalyzer.Process(EP.Ner.Core.AnalysisKit)">
@@ -238,6 +235,36 @@
             Номер (для законов номеров может быть много)
             </summary>
         </member>
+        <member name="T:EP.Ner.Decree.DecreeKind">
+            <summary>
+            Типы нормативных актов
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Decree.DecreeKind.Kodex">
+            <summary>
+            Кодекс
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Decree.DecreeKind.Ustav">
+            <summary>
+            Устав
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Decree.DecreeKind.Konvention">
+            <summary>
+            Конвенция
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Decree.DecreeKind.Contract">
+            <summary>
+            Договор, контракт
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Decree.DecreeKind.Project">
+            <summary>
+            Проект 
+            </summary>
+        </member>
         <member name="F:EP.Ner.Decree.DecreeKind.Publisher">
             <summary>
             Источники опубликований
@@ -380,6 +407,11 @@
             </summary>
             <param name="name">имя, на который оканчивается ресурс</param>
             <returns></returns>
+        </member>
+        <member name="T:EP.Ner.Instrument.InstrumentAnalyzer">
+            <summary>
+            Анализатор структуры нормативных актов и договоров
+            </summary>
         </member>
         <member name="P:EP.Ner.Instrument.InstrumentAnalyzer.IsSpecific">
             <summary>

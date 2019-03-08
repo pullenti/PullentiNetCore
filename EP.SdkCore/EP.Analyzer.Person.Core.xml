@@ -69,7 +69,7 @@
         </member>
         <member name="T:EP.Ner.Person.PersonAnalyzer">
             <summary>
-            Семантический анализатор выделения персон
+            Анализатор выделения персон
             </summary>
         </member>
         <member name="F:EP.Ner.Person.PersonAnalyzer.NominativeCaseAlways">
@@ -131,7 +131,7 @@
         </member>
         <member name="T:EP.Ner.Person.PersonPropertyKind">
             <summary>
-            Типы свойств
+            Типы свойств персон
             </summary>
         </member>
         <member name="F:EP.Ner.Person.PersonPropertyKind.Boss">
@@ -194,7 +194,7 @@
         </member>
         <member name="T:EP.Ner.Mail.MailAnalyzer">
             <summary>
-            Семантический анализатор анализа писем (блоков писем)
+            Анализатор анализа писем (блоков писем)
             </summary>
         </member>
         <member name="P:EP.Ner.Mail.MailAnalyzer.IsSpecific">
@@ -215,6 +215,31 @@
         <member name="P:EP.Ner.Mail.MailReferent.Kind">
             <summary>
             Тип блока письма
+            </summary>
+        </member>
+        <member name="T:EP.Ner.Mail.MailKind">
+            <summary>
+            Тип блока письма
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Mail.MailKind.Head">
+            <summary>
+            Заголовок
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Mail.MailKind.Hello">
+            <summary>
+            Приветствие
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Mail.MailKind.Body">
+            <summary>
+            Содержимое
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Mail.MailKind.Tail">
+            <summary>
+            Подпись
             </summary>
         </member>
     </members>

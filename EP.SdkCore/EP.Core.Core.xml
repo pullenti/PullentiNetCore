@@ -231,6 +231,18 @@
             Внутри могут быть переходы на новую строку (многострочный)
             </summary>
         </member>
+        <member name="T:EP.Ner.Core.ConjunctionHelper">
+            <summary>
+            Поддержка работы с союзами (запятая тоже считается союзом)
+            </summary>
+        </member>
+        <member name="M:EP.Ner.Core.ConjunctionHelper.TryParse(EP.Ner.Token)">
+            <summary>
+            Попытаться выделить союз с указанного токена
+            </summary>
+            <param name="t">начальный токен</param>
+            <returns>результат или null</returns>
+        </member>
         <member name="T:EP.Ner.Core.MiscHelper">
             <summary>
             Разные полезные процедурки
@@ -628,6 +640,17 @@
             Группа может быть на разбита на нескольких строках (начало на одной, окончание на другой)
             </summary>
         </member>
+        <member name="F:EP.Ner.Core.NounPhraseParseAttr.IgnoreBrackets">
+            <summary>
+            Игнорировать содержимое в скобках (...) внутри именной группы
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Core.NounPhraseParseAttr.MultiNouns">
+            <summary>
+            Это для случая "грузовой и легковой автомобили" - то есть прилагательные
+            относятся к одному существительному (как бы слепленному)
+            </summary>
+        </member>
         <member name="T:EP.Ner.Core.NumberHelper">
             <summary>
             Работа с числовыми значениями
@@ -635,7 +658,9 @@
         </member>
         <member name="M:EP.Ner.Core.NumberHelper.TryParseNumber(EP.Ner.Token)">
             <summary>
-            Попробовать создать числительное
+            Попробовать создать числительное (без знака, целочисленное).
+            Внимание! Этот метод всегда вызывается процессором при формировании цепочки токенов,
+            так что все NumberToken уже созданы.
             </summary>
             <param name="token"></param>
             <returns></returns>
@@ -666,6 +691,16 @@
             Выделение годовщин и летий (XX-летие) ...
             </summary>
         </member>
+        <member name="M:EP.Ner.Core.NumberHelper.TryParseRealNumber(EP.Ner.Token,System.Boolean)">
+            <summary>
+            Выделить действительное число, знак также выделяется,
+            разделители дроби могут быть точка или запятая, разделителями тысячных
+            могут быть точки, пробелы и запятые.
+            </summary>
+            <param name="t">начальный токен</param>
+            <param name="canBeInteger">число должно быть целым</param>
+            <returns>результат или null</returns>
+        </member>
         <member name="M:EP.Ner.Core.NumberHelper.GetNumberAdjective(System.Int32,EP.Morph.MorphGender,EP.Morph.MorphNumber)">
             <summary>
             Преобразовать число в числительное, записанное буквами, в соотв. роде и числе.
@@ -683,13 +718,6 @@
             <param name="val"></param>
             <returns></returns>
         </member>
-        <member name="M:EP.Ner.Core.NumberHelper.TryParseFloatNumber(EP.Ner.Token)">
-            <summary>
-            Выделить дробное число
-            </summary>
-            <param name="t">начальный токен</param>
-            <returns></returns>
-        </member>
         <member name="M:EP.Ner.Core.NumberHelper.TryParseNumberWithPostfix(EP.Ner.Token)">
             <summary>
             Выделение стандартных мер, типа: 10 кв.м.
@@ -697,7 +725,7 @@
             <param name="t">начальный токен</param>
             <returns></returns>
         </member>
-        <member name="M:EP.Ner.Core.NumberHelper.TryAttachPostfixOnly(EP.Ner.Token)">
+        <member name="M:EP.Ner.Core.NumberHelper.TryParsePostfixOnly(EP.Ner.Token)">
             <summary>
             Это попробовать только тип (постфикс) без самого числа.
             Например, куб.м.
@@ -711,6 +739,35 @@
             </summary>
             <param name="t"></param>
             <returns></returns>
+        </member>
+        <member name="M:EP.Ner.Core.NumberHelper.StringToDouble(System.String)">
+            <summary>
+            Для парсинга действительного числа из строки используйте эту функцию,
+            которая работает назависимо от локализьных настроек и на всех языках программирования
+            </summary>
+            <param name="str">строка</param>
+            <returns>число</returns>
+        </member>
+        <member name="M:EP.Ner.Core.NumberHelper.DoubleToString(System.Double)">
+            <summary>
+            Независимо от языка и настроек выводит действиельное число в строку,
+            разделитель - точка. Ситуация типа 1.0000000001 или 23.7299999999999,
+            случающиеся на разных языках, округляются куда надо.
+            </summary>
+            <param name="d">число</param>
+            <returns>результат</returns>
+        </member>
+        <member name="T:EP.Ner.Core.PrepositionHelper">
+            <summary>
+            Поддержка работы с предлогами
+            </summary>
+        </member>
+        <member name="M:EP.Ner.Core.PrepositionHelper.TryParse(EP.Ner.Token)">
+            <summary>
+            Попытаться выделить предлог с указанного токена
+            </summary>
+            <param name="t">начальный токен</param>
+            <returns>результат или null</returns>
         </member>
         <member name="T:EP.Ner.Core.ProperNameHelper">
             <summary>
@@ -741,11 +798,12 @@
             Работа с глагольными группами (последовательность из глаголов и наречий)
             </summary>
         </member>
-        <member name="M:EP.Ner.Core.VerbPhraseHelper.TryParse(EP.Ner.Token)">
+        <member name="M:EP.Ner.Core.VerbPhraseHelper.TryParse(EP.Ner.Token,System.Boolean)">
             <summary>
             Создать глагольную группу
             </summary>
             <param name="t">первый токен группы</param>
+            <param name="canBePartition">выделять ли причастия</param>
             <returns>группа или null</returns>
         </member>
         <member name="T:EP.Ner.Core.Internal.NounPhraseItem">
@@ -777,6 +835,18 @@
             <summary>
             Нормализованное значение в единственном числе
             </summary>
+        </member>
+        <member name="M:EP.Ner.Core.Internal.NumberExHelper.TryParseNumberWithPostfix(EP.Ner.Token)">
+            <summary>
+            Выделение стандартных мер, типа: 10 кв.м.
+            </summary>
+        </member>
+        <member name="M:EP.Ner.Core.Internal.NumberExHelper.TryAttachPostfixOnly(EP.Ner.Token)">
+            <summary>
+            Это попробовать только тип (постфикс) без самого числа
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
         </member>
         <member name="T:EP.Ner.Core.Internal.ResourceHelper">
             <summary>
@@ -1288,6 +1358,22 @@
             Закрывающий символ
             </summary>
         </member>
+        <member name="T:EP.Ner.Core.ConjunctionToken">
+            <summary>
+            Представление союзов (они могут быть из нескольких токенов, например, "из-за того что"
+            Получить можно с помощью ConjunctionHelper.TryParse(t)
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Core.ConjunctionToken.Normal">
+            <summary>
+            Нормализованное значение
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Core.ConjunctionToken.Typ">
+            <summary>
+            Возможный тип (класс союза)
+            </summary>
+        </member>
         <member name="T:EP.Ner.Core.NounPhraseToken">
             <summary>
             Токен для представления именной группы
@@ -1324,6 +1410,11 @@
             Начальный предлог предлог (если задан ключ ParsePreposition)
             </summary>
         </member>
+        <member name="F:EP.Ner.Core.NounPhraseToken.MultiNouns">
+            <summary>
+            Это когда Noun как бы слепленный для разных прилагательных (грузовой и легковой автомобили)
+            </summary>
+        </member>
         <member name="M:EP.Ner.Core.NounPhraseToken.GetMorphVariant(EP.Morph.MorphCase,System.Boolean)">
             <summary>
             Сгенерировать текст именной группы в нужном падеже и числе
@@ -1335,11 +1426,6 @@
         <member name="T:EP.Ner.Core.NumberExToken">
             <summary>
             Число с стандартный постфиксом (мерой длины, вес, деньги и т.п.)
-            </summary>
-        </member>
-        <member name="F:EP.Ner.Core.NumberExToken.RealValue">
-            <summary>
-            Это если заданы дроби ...
             </summary>
         </member>
         <member name="F:EP.Ner.Core.NumberExToken.AltRealValue">
@@ -1367,23 +1453,27 @@
             Это признак того, что "множитель" слипся с единицей измерения
             </summary>
         </member>
-        <member name="M:EP.Ner.Core.NumberExToken.TryParseFloatNumber(EP.Ner.Token,System.Boolean)">
+        <member name="T:EP.Ner.Core.NumberExType">
             <summary>
-            Это разделитель дроби по-умолчанию, используется для случаев, когда невозможно принять однозначного решения.
-            Устанавливается на основе последнего успешного анализа.
+            Единицы измерения для NumberExToken
             </summary>
         </member>
-        <member name="M:EP.Ner.Core.NumberExToken.TryParseNumberWithPostfix(EP.Ner.Token)">
+        <member name="T:EP.Ner.Core.PrepositionToken">
             <summary>
-            Выделение стандартных мер, типа: 10 кв.м.
+            Представление предлогов (они могут быть из нескольких токенов, например, 
+            "несмотря на", "в соответствии с").
+            Получить можно с помощью PrepositionHelper.TryParse(t)
             </summary>
         </member>
-        <member name="M:EP.Ner.Core.NumberExToken.TryAttachPostfixOnly(EP.Ner.Token)">
+        <member name="F:EP.Ner.Core.PrepositionToken.Normal">
             <summary>
-            Это попробовать только тип (постфикс) без самого числа
+            Нормализованное значение (ПОДО -> ПОД,  ОБО, ОБ -> О ...)
             </summary>
-            <param name="t"></param>
-            <returns></returns>
+        </member>
+        <member name="F:EP.Ner.Core.PrepositionToken.NextCase">
+            <summary>
+            Падежи для слов, используемых с предлогом
+            </summary>
         </member>
         <member name="T:EP.Ner.Core.VerbPhraseToken">
             <summary>
@@ -1403,6 +1493,11 @@
         <member name="P:EP.Ner.Core.VerbPhraseToken.LastVerb">
             <summary>
             Последний глагол (если один, то совпадает с первым)
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Core.VerbPhraseToken.Preposition">
+            <summary>
+            Предлог перед (для причастий)
             </summary>
         </member>
         <member name="P:EP.Ner.Core.VerbPhraseToken.IsVerbPassive">
@@ -1425,9 +1520,14 @@
             Наречие
             </summary>
         </member>
-        <member name="P:EP.Ner.Core.VerbPhraseItemToken.IsVerbAdjective">
+        <member name="P:EP.Ner.Core.VerbPhraseItemToken.IsParticiple">
             <summary>
             Причастие
+            </summary>
+        </member>
+        <member name="P:EP.Ner.Core.VerbPhraseItemToken.IsDeeParticiple">
+            <summary>
+            Признак деепричастия
             </summary>
         </member>
         <member name="P:EP.Ner.Core.VerbPhraseItemToken.IsVerbInfinitive">
@@ -1435,7 +1535,7 @@
             Глагол-инфиниитив
             </summary>
         </member>
-        <member name="F:EP.Ner.Core.VerbPhraseItemToken.Normal">
+        <member name="P:EP.Ner.Core.VerbPhraseItemToken.Normal">
             <summary>
             Нормализованное значение
             </summary>
@@ -2599,9 +2699,22 @@
             Числовой токен (числительное)
             </summary>
         </member>
-        <member name="F:EP.Ner.NumberToken.Value">
+        <member name="P:EP.Ner.NumberToken.Value">
             <summary>
-            Числовое значение
+            Числовое значение (если действительное, то с точкой - разделителем дробных).
+            </summary>
+        </member>
+        <member name="P:EP.Ner.NumberToken.IntValue">
+            <summary>
+            Целочисленное 32-х битное значение.
+            Число может быть большое и не умещаться в Int, тогда вернёт null.
+            Если есть дробная часть, то тоже вернёт null.
+            Long не используется, так как не поддерживается в Javascript
+            </summary>
+        </member>
+        <member name="P:EP.Ner.NumberToken.RealValue">
+            <summary>
+            Получить действительное значение из Value. Если не удалось, то NaN.
             </summary>
         </member>
         <member name="F:EP.Ner.NumberToken.Typ">

@@ -143,7 +143,7 @@
         </member>
         <member name="T:EP.Ner.Org.OrganizationAnalyzer">
             <summary>
-            Семантический анализатор организаций
+            Анализатор организаций
             </summary>
         </member>
         <member name="F:EP.Ner.Org.OrganizationAnalyzer.TextStartsWithNumber">

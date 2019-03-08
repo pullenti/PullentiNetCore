@@ -4,6 +4,11 @@
         <name>EP.Analyzer.Misc.Core</name>
     </assembly>
     <members>
+        <member name="T:EP.Ner.Bank.BankAnalyzer">
+            <summary>
+            Анализатор банковских данных (счетов, платёжных реквизитов...)
+            </summary>
+        </member>
         <member name="T:EP.Ner.Bank.BankDataReferent">
             <summary>
             Банковские данные (реквизиты)
@@ -23,7 +28,7 @@
         </member>
         <member name="T:EP.Ner.Date.DateAnalyzer">
             <summary>
-            Семантический анализатор для дат и диапазонов дат
+            Анализатор для дат и диапазонов дат
             </summary>
         </member>
         <member name="M:EP.Ner.Date.DateAnalyzer.Process(EP.Ner.Core.AnalysisKit)">
@@ -454,6 +459,12 @@
             Анализатор ключевых комбинаций
             </summary>
         </member>
+        <member name="F:EP.Ner.Keyword.KeywordAnalyzer.AnnotationMaxSentences">
+            <summary>
+            Максимально предложений в автоаннотацию (KeywordReferent с типом Annotation).
+            Если 0, то не делать автоаннотацию.
+            </summary>
+        </member>
         <member name="M:EP.Ner.Keyword.KeywordAnalyzer.Process(EP.Ner.Core.AnalysisKit)">
             <summary>
             Основная функция выделения телефонов
@@ -477,12 +488,42 @@
             Вычисляемый ранг (в атрибутах не сохраняется - просто поле!)
             </summary>
         </member>
+        <member name="T:EP.Ner.Keyword.KeywordType">
+            <summary>
+            Тип ключевой комбинации
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Keyword.KeywordType.Undefined">
+            <summary>
+            Неопределён
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Keyword.KeywordType.Object">
+            <summary>
+            Объект (именная группа)
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Keyword.KeywordType.Referent">
+            <summary>
+            Именованная сущность
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Keyword.KeywordType.Predicate">
+            <summary>
+            Предикат (глагол)
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Keyword.KeywordType.Annotation">
+            <summary>
+            Автоаннотация всего текста
+            </summary>
+        </member>
         <member name="F:EP.Ner.Measure.Internal.MeasureToken.Reliable">
             <summary>
             Очень хорошее выделение
             </summary>
         </member>
-        <member name="M:EP.Ner.Measure.Internal.MeasureToken.TryParse(EP.Ner.Token,EP.Ner.Core.TerminCollection,System.Boolean)">
+        <member name="M:EP.Ner.Measure.Internal.MeasureToken.TryParse(EP.Ner.Token,EP.Ner.Core.TerminCollection,System.Boolean,System.Boolean)">
             <summary>
             Выделение вместе с наименованием
             </summary>
@@ -534,7 +575,7 @@
             Чтсло, слкдующее после знака деления
             </summary>
         </member>
-        <member name="M:EP.Ner.Measure.Internal.NumbersWithUnitToken.TryParse(EP.Ner.Token,EP.Ner.Core.TerminCollection,System.Boolean,System.Boolean)">
+        <member name="M:EP.Ner.Measure.Internal.NumbersWithUnitToken.TryParse(EP.Ner.Token,EP.Ner.Core.TerminCollection,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Попробовать выделить с указанной позиции
             </summary>
@@ -641,6 +682,11 @@
             Ежиница измерения
             </summary>
         </member>
+        <member name="P:EP.Ner.Measure.UnitReferent.IsUnknown">
+            <summary>
+            Признак того, что это неизвестная метрика
+            </summary>
+        </member>
         <member name="F:EP.Ner.Measure.UnitReferent.m_Unit">
             <summary>
             Используется внутренним образом
@@ -692,7 +738,7 @@
         </member>
         <member name="P:EP.Ner.Money.MoneyReferent.RealValue">
             <summary>
-            Действительное значение
+            Действительное значение (вместе с копейками)
             </summary>
         </member>
         <member name="M:EP.Ner.Phone.Internal.PhoneHelper.GetCountryPrefix(System.String)">
@@ -735,7 +781,7 @@
         </member>
         <member name="T:EP.Ner.Phone.PhoneAnalyzer">
             <summary>
-            Семантический картридж для выделения телефонов
+            Анализатор для выделения телефонных номеров
             </summary>
         </member>
         <member name="M:EP.Ner.Phone.PhoneAnalyzer.Process(EP.Ner.Core.AnalysisKit)">
@@ -771,9 +817,34 @@
             Тип телефона
             </summary>
         </member>
+        <member name="T:EP.Ner.Phone.PhoneKind">
+            <summary>
+            Тип телефонного номера
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Phone.PhoneKind.Home">
+            <summary>
+            Домашний
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Phone.PhoneKind.Mobile">
+            <summary>
+            Мобильный
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Phone.PhoneKind.Work">
+            <summary>
+            Рабочий
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Phone.PhoneKind.Fax">
+            <summary>
+            Факс
+            </summary>
+        </member>
         <member name="T:EP.Ner.Uri.UriAnalyzer">
             <summary>
-            Картридж для выделения интернетных объектов (URL, E-mail)
+            Анализатор для выделения URI-объектов (схема:значение)
             </summary>
         </member>
         <member name="M:EP.Ner.Uri.UriAnalyzer.Process(EP.Ner.Core.AnalysisKit)">
@@ -786,7 +857,7 @@
         </member>
         <member name="T:EP.Ner.Uri.UriReferent">
             <summary>
-            URI, а также ISBN, УДК, ББК, ICQ и пр.
+            URI, а также ISBN, УДК, ББК, ICQ и пр. (всё, что укладывается в СХЕМА:ЗНАЧЕНИЕ)
             </summary>
         </member>
         <member name="P:EP.Ner.Uri.UriReferent.Value">
