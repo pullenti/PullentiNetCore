@@ -282,6 +282,11 @@
             Аэропорт
             </summary>
         </member>
+        <member name="F:EP.Ner.Org.OrganizationKind.Seaport">
+            <summary>
+            Морские порты
+            </summary>
+        </member>
         <member name="F:EP.Ner.Org.OrganizationKind.Festival">
             <summary>
             События (фестиваль, чемпионат)

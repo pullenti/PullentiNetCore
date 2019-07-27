@@ -523,7 +523,7 @@
             Очень хорошее выделение
             </summary>
         </member>
-        <member name="M:EP.Ner.Measure.Internal.MeasureToken.TryParse(EP.Ner.Token,EP.Ner.Core.TerminCollection,System.Boolean,System.Boolean)">
+        <member name="M:EP.Ner.Measure.Internal.MeasureToken.TryParse(EP.Ner.Token,EP.Ner.Core.TerminCollection,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Выделение вместе с наименованием
             </summary>
@@ -575,7 +575,7 @@
             Чтсло, слкдующее после знака деления
             </summary>
         </member>
-        <member name="M:EP.Ner.Measure.Internal.NumbersWithUnitToken.TryParse(EP.Ner.Token,EP.Ner.Core.TerminCollection,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:EP.Ner.Measure.Internal.NumbersWithUnitToken.TryParse(EP.Ner.Token,EP.Ner.Core.TerminCollection,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Попробовать выделить с указанной позиции
             </summary>
@@ -675,6 +675,16 @@
         <member name="F:EP.Ner.Measure.MeasureKind.Speed">
             <summary>
             Скорость
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Measure.MeasureKind.Temperature">
+            <summary>
+            Температура
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Measure.MeasureKind.Ip">
+            <summary>
+            Класс защиты
             </summary>
         </member>
         <member name="T:EP.Ner.Measure.UnitReferent">

@@ -691,7 +691,7 @@
             Выделение годовщин и летий (XX-летие) ...
             </summary>
         </member>
-        <member name="M:EP.Ner.Core.NumberHelper.TryParseRealNumber(EP.Ner.Token,System.Boolean)">
+        <member name="M:EP.Ner.Core.NumberHelper.TryParseRealNumber(EP.Ner.Token,System.Boolean,System.Boolean)">
             <summary>
             Выделить действительное число, знак также выделяется,
             разделители дроби могут быть точка или запятая, разделителями тысячных
@@ -699,6 +699,7 @@
             </summary>
             <param name="t">начальный токен</param>
             <param name="canBeInteger">число должно быть целым</param>
+            <param name="noWhitespace">не должно быть пробелов</param>
             <returns>результат или null</returns>
         </member>
         <member name="M:EP.Ner.Core.NumberHelper.GetNumberAdjective(System.Int32,EP.Morph.MorphGender,EP.Morph.MorphNumber)">
@@ -1224,12 +1225,21 @@
             Добавить все сокращения (с первой буквы до любого согласного)
             </summary>
         </member>
-        <member name="M:EP.Ner.Core.Termin.TryParse(EP.Ner.Token,EP.Ner.Core.TerminParseAttr)">
+        <member name="M:EP.Ner.Core.Termin.TryParse(EP.Ner.Token,EP.Ner.Core.TerminParseAttr,System.Double)">
             <summary>
             Попробовать привязать термин
             </summary>
             <param name="t0"></param>
-            <param name="fullWordsOnly"></param>
+            <param name="pars">дополнительные параметры привязки</param>
+            <param name="simD">степень похожести (если меньше 1)</param>
+            <returns></returns>
+        </member>
+        <member name="M:EP.Ner.Core.Termin.TryParseSim(EP.Ner.Token,System.Double,EP.Ner.Core.TerminParseAttr)">
+            <summary>
+            Попробовать привязать термин с использованием "похожести"
+            </summary>
+            <param name="t0">начальный токен</param>
+            <param name="simD">похожесть (0.05..1)</param>
             <returns></returns>
         </member>
         <member name="T:EP.Ner.Core.TerminCollection">
@@ -1277,12 +1287,13 @@
             <param name="pars">параметры выделения</param>
             <returns></returns>
         </member>
-        <member name="M:EP.Ner.Core.TerminCollection.TryParseAll(EP.Ner.Token,EP.Ner.Core.TerminParseAttr)">
+        <member name="M:EP.Ner.Core.TerminCollection.TryParseAll(EP.Ner.Token,EP.Ner.Core.TerminParseAttr,System.Double)">
             <summary>
             Попытка привязать все возможные варианты
             </summary>
             <param name="token"></param>
             <param name="pars">параметры выделения</param>
+            <param name="simD">параметр "похожесть (0.05..1)"</param>
             <returns></returns>
         </member>
         <member name="M:EP.Ner.Core.TerminCollection.TryAttach(EP.Ner.Core.Termin)">

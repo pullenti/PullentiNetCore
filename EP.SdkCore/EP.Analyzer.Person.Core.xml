@@ -24,6 +24,14 @@
             Сомнительный атрибут
             </summary>
         </member>
+        <member name="M:EP.Ner.Person.Internal.PersonHelper.CreateSex(EP.Ner.Person.PersonReferent,EP.Ner.Token)">
+            <summary>
+            Выделить пол
+            </summary>
+            <param name="pr"></param>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
         <member name="M:EP.Ner.Person.Internal.PersonHelper.CreateNickname(EP.Ner.Person.PersonReferent,EP.Ner.Token)">
             <summary>
             Выделить кличку
