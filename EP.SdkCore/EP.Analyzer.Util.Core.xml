@@ -252,6 +252,11 @@
             дата (возможно, относительная)
             </summary>
         </member>
+        <member name="F:EP.Ner.Chat.ChatType.DateRange">
+            <summary>
+            диапазон дат
+            </summary>
+        </member>
         <member name="F:EP.Ner.Chat.ChatType.Repeat">
             <summary>
             Просьба повторить

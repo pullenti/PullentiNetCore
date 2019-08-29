@@ -482,6 +482,16 @@
             <param name="pluralNumber">множественное число</param>
             <returns>результат (в крайнем случае, вернёт исходную строку, если ничего не получилось)</returns>
         </member>
+        <member name="M:EP.Ner.Core.MiscHelper.GetTextMorphVarByCaseAndNumberEx(System.String,EP.Morph.MorphCase,EP.Morph.MorphNumber,System.String)">
+            <summary>
+            Корректировка числа и падежа строки
+            </summary>
+            <param name="str">исходная строка, изменяется только первая именная группа</param>
+            <param name="cas"></param>
+            <param name="num"></param>
+            <param name="numVal"></param>
+            <returns></returns>
+        </member>
         <member name="T:EP.Ner.Core.GetTextAttr">
             <summary>
             Атрибуты получения текста

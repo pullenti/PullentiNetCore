@@ -206,6 +206,11 @@
             Список объектов, которым посвящена организации (имени кого)
             </summary>
         </member>
+        <member name="F:EP.Ner.Org.OrganizationReferent.IsFromGlobalOntos">
+            <summary>
+            Признак того, что организация находится во встроенной отнологии
+            </summary>
+        </member>
         <member name="F:EP.Ner.Org.OrganizationReferent.ExtOntologyAttached">
             <summary>
             Признак того, что была попытка привязаться к внешней онтологии
