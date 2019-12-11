@@ -729,6 +729,14 @@
             <param name="val"></param>
             <returns></returns>
         </member>
+        <member name="M:EP.Ner.Core.NumberHelper.GetNumberString(System.Int32,System.String)">
+            <summary>
+            Получить строковое представление целого числа
+            </summary>
+            <param name="val">значение</param>
+            <param name="units">единицы измерения (они тоже будут преобразовываться в нужное число)</param>
+            <returns>строковое представление (пока на русском языке)</returns>
+        </member>
         <member name="M:EP.Ner.Core.NumberHelper.TryParseNumberWithPostfix(EP.Ner.Token)">
             <summary>
             Выделение стандартных мер, типа: 10 кв.м.
@@ -2627,6 +2635,11 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "F:EP.Ner.SourceOfAnalysis.DoWordsMergingByMorph" -->
+        <member name="F:EP.Ner.SourceOfAnalysis.CreateNumberTokens">
+            <summary>
+            Создавать автоматически NumberToken
+            </summary>
+        </member>
         <member name="F:EP.Ner.SourceOfAnalysis.CorrectionDict">
             <summary>
             Словарь корректировки типовых ошибок.
