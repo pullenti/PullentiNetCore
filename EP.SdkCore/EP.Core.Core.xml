@@ -161,6 +161,11 @@
             Используется для предотвращения большого числа рекурсий
             </summary>
         </member>
+        <member name="F:EP.Ner.Core.AnalysisKit.OntoRegime">
+            <summary>
+            Используется внутренним образом
+            </summary>
+        </member>
         <member name="T:EP.Ner.Core.BracketHelper">
             <summary>
             Поддержка анализа скобок и кавычек
@@ -1233,6 +1238,11 @@
             Используется произвольным образом
             </summary>
         </member>
+        <member name="F:EP.Ner.Core.Termin.Tag3">
+            <summary>
+            Используется произвольным образом
+            </summary>
+        </member>
         <member name="P:EP.Ner.Core.Termin.Gender">
             <summary>
             Род (первого термина)
@@ -1289,6 +1299,13 @@
         <member name="F:EP.Ner.Core.TerminCollection.AllAddStrsNormalized">
             <summary>
             Если установлено true, то все входные термины уже нормализованы
+            (сделано для ускорения загрузки в питоне)
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Core.TerminCollection.Synonyms">
+            <summary>
+            Возможный словарь синонимов (если в словаре комбинация не найдена, а она есть в синонимах,
+            то синонимы ищутся в текущем словаре, если есть, то ОК)
             </summary>
         </member>
         <member name="M:EP.Ner.Core.TerminCollection.Reindex(EP.Ner.Core.Termin)">
@@ -1444,6 +1461,13 @@
             Это когда Noun как бы слепленный для разных прилагательных (грузовой и легковой автомобили)
             </summary>
         </member>
+        <member name="M:EP.Ner.Core.NounPhraseToken.GetMultivars">
+            <summary>
+            Это если MultiNouns = true, то можно как бы расщепить на варианты
+            (грузовой и легковой автомобили -> грузовой автомобиль и легковой автомобиль)
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:EP.Ner.Core.NounPhraseToken.GetMorphVariant(EP.Morph.MorphCase,System.Boolean)">
             <summary>
             Сгенерировать текст именной группы в нужном падеже и числе
@@ -1451,6 +1475,11 @@
             <param name="cas"></param>
             <param name="plural"></param>
             <returns></returns>
+        </member>
+        <member name="T:EP.Ner.Core.NounPhraseMultivarToken">
+            <summary>
+            Вариант расщепления именной группы, у которой слиплись существительные
+            </summary>
         </member>
         <member name="T:EP.Ner.Core.NumberExToken">
             <summary>
@@ -1711,6 +1740,18 @@
             Список элементов внешней онтологии
             </summary>
         </member>
+        <member name="M:EP.Ner.ExtOntology.Serialize(System.IO.Stream)">
+            <summary>
+            Сериазизовать весь словарь в поток
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:EP.Ner.ExtOntology.Deserialize(System.IO.Stream)">
+            <summary>
+            Восстановить словарь из потока
+            </summary>
+            <param name="stream"></param>
+        </member>
         <member name="M:EP.Ner.ExtOntology._getAnalyzerData(System.String)">
             <summary>
             Используется внутренним образом
@@ -1751,6 +1792,11 @@
         <member name="F:EP.Ner.ExtOntologyItem.Referent">
             <summary>
             Ссылка на сущность
+            </summary>
+        </member>
+        <member name="F:EP.Ner.ExtOntologyItem.Refs">
+            <summary>
+            Используется внутренним образом
             </summary>
         </member>
         <member name="T:EP.Ner.MorphCollection">
