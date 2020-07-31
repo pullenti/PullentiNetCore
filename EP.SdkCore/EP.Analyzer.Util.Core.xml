@@ -176,12 +176,6 @@
             Уставной капитал
             </summary>
         </member>
-        <member name="F:EP.Ner.Chat.ChatAnalyzer.CurrentDateTime">
-            <summary>
-            Это нужно для автотестов, чтобы фиксировать дату-время, относительно которой 
-            идут вычисления (если не задана, то берётся текущая)
-            </summary>
-        </member>
         <member name="P:EP.Ner.Chat.ChatReferent.Typ">
             <summary>
             Тип элемента

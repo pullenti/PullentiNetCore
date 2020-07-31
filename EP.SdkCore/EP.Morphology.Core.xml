@@ -736,13 +736,13 @@
         </member>
         <member name="P:EP.Morph.CharsInfo.IsCapitalUpper">
             <summary>
-            ПЕрвый символ в верхнем регистре, остальные в нижнем.
+            Первый символ в верхнем регистре, остальные в нижнем.
             Для однобуквенной комбинации false.
             </summary>
         </member>
         <member name="P:EP.Morph.CharsInfo.IsLastLower">
             <summary>
-            Все символы в верхнеи регистре, кроме последнего (длина >= 3)
+            Все символы в верхнем регистре, кроме последнего (длина >= 3)
             </summary>
         </member>
         <member name="P:EP.Morph.CharsInfo.IsLetter">
@@ -990,11 +990,6 @@
         <member name="F:EP.Morph.MorphWordForm.UndefCoef">
             <summary>
             Коэффициент достоверности для неизвестных словоформ (чем больше, тем вероятнее)
-            </summary>
-        </member>
-        <member name="F:EP.Morph.MorphWordForm.Tag">
-            <summary>
-            Используется произвольным образом
             </summary>
         </member>
     </members>

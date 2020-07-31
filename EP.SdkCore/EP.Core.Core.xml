@@ -379,6 +379,13 @@
             <param name="cla"></param>
             <returns></returns>
         </member>
+        <member name="M:EP.Ner.Core.MiscHelper.IsTokenAnimate(EP.Ner.Token)">
+            <summary>
+            Проверка, что это - одушевлённое
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
         <member name="M:EP.Ner.Core.MiscHelper.IsAllCharactersLower(EP.Ner.Token,EP.Ner.Token,System.Boolean)">
             <summary>
             Проверка, что все в заданном диапазоне в нижнем регистре
@@ -497,6 +504,34 @@
             <param name="numVal"></param>
             <returns></returns>
         </member>
+        <member name="M:EP.Ner.Core.MiscHelper.NormalizeText(System.String,EP.Ner.Core.NormalizeTextAttr)">
+            <summary>
+            Нормализация текста
+            </summary>
+            <param name="text">исходный текст</param>
+            <param name="attr">атрибуты нормализации</param>
+            <returns></returns>
+        </member>
+        <member name="T:EP.Ner.Core.NormalizeTextAttr">
+            <summary>
+            Атрибуты нормализации текста
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Core.NormalizeTextAttr.KeepRegister">
+            <summary>
+            Сохранять ли регистр букв (по умолчанию, верхний регистр)
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Core.NormalizeTextAttr.KeepPunctuation">
+            <summary>
+            Игонорировать пунктуацию, скобки, кавычки и пр. несимволы и не числа
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Core.NormalizeTextAttr.NerProcess">
+            <summary>
+            Выделять ли именованные сущности и их потом нормализовывать (через ToString())
+            </summary>
+        </member>
         <member name="T:EP.Ner.Core.GetTextAttr">
             <summary>
             Атрибуты получения текста
@@ -585,13 +620,14 @@
             Выделение именных групп (существительсно с согласованными прилагательными (если они есть).
             </summary>
         </member>
-        <member name="M:EP.Ner.Core.NounPhraseHelper.TryParse(EP.Ner.Token,EP.Ner.Core.NounPhraseParseAttr,System.Int32)">
+        <member name="M:EP.Ner.Core.NounPhraseHelper.TryParse(EP.Ner.Token,EP.Ner.Core.NounPhraseParseAttr,System.Int32,EP.Ner.MetaToken)">
             <summary>
             Попробовать создать именную группу с указанного токена
             </summary>
             <param name="t">начальный токен</param>
             <param name="typ">параметры (можно битовую маску)</param>
             <param name="maxCharPos">максимальная позиция в тексте, до которой выделять, если 0, то без ограничений</param>
+            <param name="noun">это если нужно выделить только прилагательные для ранее выделенного существительного (из другой группы)</param>
             <returns>именная группа или null</returns>
         </member>
         <member name="T:EP.Ner.Core.NounPhraseParseAttr">
@@ -822,12 +858,13 @@
             Работа с глагольными группами (последовательность из глаголов и наречий)
             </summary>
         </member>
-        <member name="M:EP.Ner.Core.VerbPhraseHelper.TryParse(EP.Ner.Token,System.Boolean)">
+        <member name="M:EP.Ner.Core.VerbPhraseHelper.TryParse(EP.Ner.Token,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Создать глагольную группу
             </summary>
             <param name="t">первый токен группы</param>
             <param name="canBePartition">выделять ли причастия</param>
+            <param name="canBeAdjPartition">это бывают чистые прилагательные используются в режиме причастий (действия, опасные для жизни)</param>
             <returns>группа или null</returns>
         </member>
         <member name="T:EP.Ner.Core.Internal.NounPhraseItem">
@@ -1420,6 +1457,11 @@
             Возможный тип (класс союза)
             </summary>
         </member>
+        <member name="F:EP.Ner.Core.ConjunctionToken.IsSimple">
+            <summary>
+            Это когда союз простой (запятая, И, ...), а не такой типа "а также", "также, как и"
+            </summary>
+        </member>
         <member name="T:EP.Ner.Core.NounPhraseToken">
             <summary>
             Токен для представления именной группы
@@ -1449,6 +1491,11 @@
         <member name="F:EP.Ner.Core.NounPhraseToken.Anafor">
             <summary>
             Токен с анафорической ссылкой-местоимением (если есть), например: старшего своего брата
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Core.NounPhraseToken.AnaforaRef">
+            <summary>
+            Используется внешней системой для нахождения анафоры
             </summary>
         </member>
         <member name="F:EP.Ner.Core.NounPhraseToken.Preposition">
@@ -1591,6 +1638,21 @@
         <member name="P:EP.Ner.Core.VerbPhraseItemToken.IsVerbInfinitive">
             <summary>
             Глагол-инфиниитив
+            </summary>
+        </member>
+        <member name="P:EP.Ner.Core.VerbPhraseItemToken.IsVerbBe">
+            <summary>
+            Глаголы быть, являться...
+            </summary>
+        </member>
+        <member name="P:EP.Ner.Core.VerbPhraseItemToken.IsVerbReversive">
+            <summary>
+            Возвратный глагол
+            </summary>
+        </member>
+        <member name="P:EP.Ner.Core.VerbPhraseItemToken.IsVerbPassive">
+            <summary>
+            Глагол в страдательном залоге
             </summary>
         </member>
         <member name="P:EP.Ner.Core.VerbPhraseItemToken.Normal">
@@ -1774,6 +1836,11 @@
             <param name="t"></param>
             <returns></returns>
         </member>
+        <member name="F:EP.Ner.ExtOntology.Tag">
+            <summary>
+            Используется произвольным образом
+            </summary>
+        </member>
         <member name="T:EP.Ner.ExtOntologyItem">
             <summary>
             Элемент внешней онтологии
@@ -1861,6 +1928,13 @@
             Удалить элементы не из словаря (если все не из словаря, то ничего не удаляется).
             То есть оставить только словарный вариант.
             </summary>
+        </member>
+        <member name="M:EP.Ner.MorphCollection.RemoveItemsListCla(System.Collections.Generic.ICollection{EP.Morph.MorphBaseInfo},EP.Morph.MorphClass)">
+            <summary>
+            Удалить элементы, не соответствующие заданным параметрам
+            </summary>
+            <param name="bis"></param>
+            <param name="cla"></param>
         </member>
         <member name="M:EP.Ner.MorphCollection.RemoveItemsEx(EP.Ner.MorphCollection,EP.Morph.MorphClass)">
             <summary>
@@ -2042,6 +2116,12 @@
             <summary>
             Экземпляр процессора с пустым множеством анализаторов (используется для
             разных лингвистических процедур, где не нужны сущности)
+            </summary>
+        </member>
+        <member name="F:EP.Ner.ProcessorService.DebugCurrentDateTime">
+            <summary>
+            Это нужно для автотестов, чтобы фиксировать дату-время, относительно которой 
+            идут вычисления (если не задана, то берётся текущая)
             </summary>
         </member>
         <member name="T:EP.Ner.ImageWrapper">
@@ -2916,12 +2996,12 @@
             Аналитический контейнер
             </summary>
         </member>
-        <member name="F:EP.Ner.Token.BeginChar">
+        <member name="P:EP.Ner.Token.BeginChar">
             <summary>
             Начальная позиция
             </summary>
         </member>
-        <member name="F:EP.Ner.Token.EndChar">
+        <member name="P:EP.Ner.Token.EndChar">
             <summary>
             Конечная позиция
             </summary>
@@ -3080,12 +3160,14 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:EP.Ner.Token.GetNormalCaseText(EP.Morph.MorphClass,System.Boolean,EP.Morph.MorphGender,System.Boolean)">
+        <member name="M:EP.Ner.Token.GetNormalCaseText(EP.Morph.MorphClass,EP.Morph.MorphNumber,EP.Morph.MorphGender,System.Boolean)">
             <summary>
             Получить связанный с токеном текст в именительном падеже
             </summary>
-            <param name="mc"></param>
-            <param name="singleNumber">переводить ли в единственное число</param>
+            <param name="mc">желательная часть речи</param>
+            <param name="num">желательное число</param>
+            <param name="gender">желательный пол</param>
+            <param name="keepChars">сохранять регистр символов (по умолчанию, всё в верхний)</param>
             <returns></returns>
         </member>
         <member name="M:EP.Ner.Token.GetSourceText">
@@ -3100,6 +3182,81 @@
             </summary>
             <param name="cla"></param>
             <returns></returns>
+        </member>
+        <member name="T:EP.Semantic.Core.ISemanticOnto">
+            <summary>
+            Интерфейс внешней дополнительной онтологии
+            (для улучшения качества семантичсекой обработки)
+            </summary>
+        </member>
+        <member name="M:EP.Semantic.Core.ISemanticOnto.CheckLink(System.String,System.String)">
+            <summary>
+            Проверка, что в онтологии слова master и slave образуют устойчивую пару
+            </summary>
+            <param name="master"></param>
+            <param name="slave"></param>
+            <returns></returns>
+        </member>
+        <member name="T:EP.Semantic.Core.SemanticHelper">
+            <summary>
+            Полезные фукнции для семантического анализа
+            </summary>
+        </member>
+        <member name="M:EP.Semantic.Core.SemanticHelper.TryCreateLinks(EP.Ner.MetaToken,EP.Ner.MetaToken,EP.Semantic.Core.ISemanticOnto)">
+            <summary>
+            Попробовать создать семантическую связь между элементами.
+            Элементом м.б. именная (NounPhraseToken) или глагольная группа (VerbPhraseToken).
+            </summary>
+            <param name="master">основной элемент</param>
+            <param name="slave">стыкуемый элемент (также м.б. SemanticAbstractSlave)</param>
+            <param name="onto">дополнительный онтологический словарь</param>
+            <returns>список вариантов (возможно, пустой)</returns>
+        </member>
+        <member name="T:EP.Semantic.Core.SemanticLink">
+            <summary>
+            Семантическая связь двух элементов 
+            </summary>
+        </member>
+        <member name="F:EP.Semantic.Core.SemanticLink.Master">
+            <summary>
+            Основной элемент (м.б. глагольная группа VerbPhraseToken или
+            именная группа NounPhraseToken)
+            </summary>
+        </member>
+        <member name="F:EP.Semantic.Core.SemanticLink.Slave">
+            <summary>
+            Пристыкованный элемент (м.б. именная или глагольная группа)
+            </summary>
+        </member>
+        <member name="F:EP.Semantic.Core.SemanticLink.Question">
+            <summary>
+            Вопрос, на который отвечает связь
+            </summary>
+        </member>
+        <member name="F:EP.Semantic.Core.SemanticLink.Role">
+            <summary>
+            Семантическая роль
+            </summary>
+        </member>
+        <member name="F:EP.Semantic.Core.SemanticLink.IsPassive">
+            <summary>
+            Страдательный залог или возвратный глагол (роли Агент и Пациент подлежит коррекции)
+            </summary>
+        </member>
+        <member name="F:EP.Semantic.Core.SemanticLink.Rank">
+            <summary>
+            Сила связи (для сравнения и выбора лучшей)
+            </summary>
+        </member>
+        <member name="F:EP.Semantic.Core.SemanticLink.Modelled">
+            <summary>
+            Эта связь смоделирована, так как не нашлась подходящая модель управления основного элемента
+            </summary>
+        </member>
+        <member name="F:EP.Semantic.Core.SemanticLink.Idiom">
+            <summary>
+            Идиомная связь (то есть устойчивое словосочетание)
+            </summary>
         </member>
     </members>
 </doc>

@@ -41,6 +41,7 @@
         </member>
         <member name="T:EP.Ner.Date.Internal.DateExToken">
             <summary>
+            ВСЁ, этот класс теперь используется внутренним робразом, а DateReferent поддерживает относительные даты-время
             Используется для нахождения в тексте абсолютных и относительных дат и диапазонов,
             например, "в прошлом году", "за первый квартал этого года", "два дня назад и т.п."
             </summary>
@@ -158,6 +159,12 @@
             Конец диапазона
             </summary>
         </member>
+        <member name="P:EP.Ner.Date.DateRangeReferent.IsRelative">
+            <summary>
+            Диапазон относителен (с 10 по 20 февраля прошлого года)
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:EP.Ner.Date.DateRangeReferent.CalculateDateRange(System.DateTime,System.DateTime@,System.DateTime@,System.Int32)" -->
         <member name="P:EP.Ner.Date.DateRangeReferent.QuarterNumber">
             <summary>
             Проверка, что диапазон задаёт квартал, возвращает номер 1..4
@@ -178,6 +185,21 @@
             Дата в стандартной структуре .NET (null, если что-либо неопределено или дата некорректна)
             </summary>
         </member>
+        <member name="P:EP.Ner.Date.DateReferent.IsRelative">
+            <summary>
+            Элемент даты относителен (послезавтра, пару лет назад ...)
+            </summary>
+        </member>
+        <member name="M:EP.Ner.Date.DateReferent.CalculateDate(System.DateTime,System.Int32)">
+            <summary>
+            Вычислить дату-время (одну)
+            </summary>
+            <param name="now">текущая дата (для относительных дат)</param>
+            <param name="tense">время (-1 - прошлое, 0 - любое, 1 - будущее) - испрользуется
+            при неоднозначных случаях</param>
+            <returns>дата-время или null</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:EP.Ner.Date.DateReferent.CalculateDateRange(System.DateTime,System.DateTime@,System.DateTime@,System.Int32)" -->
         <member name="P:EP.Ner.Date.DateReferent.Century">
             <summary>
             Век (0 - неопределён)
@@ -188,9 +210,19 @@
             Год (0 - неопределён)
             </summary>
         </member>
+        <member name="P:EP.Ner.Date.DateReferent.Quartal">
+            <summary>
+            Квартал (0 - неопределён)
+            </summary>
+        </member>
         <member name="P:EP.Ner.Date.DateReferent.Month">
             <summary>
             Месяц (0 - неопределён)
+            </summary>
+        </member>
+        <member name="P:EP.Ner.Date.DateReferent.Week">
+            <summary>
+            Неделя (0 - неопределён)
             </summary>
         </member>
         <member name="P:EP.Ner.Date.DateReferent.Day">
@@ -278,6 +310,11 @@
         <member name="F:EP.Ner.Date.DatePointerType.Autumn">
             <summary>
             Осенью
+            </summary>
+        </member>
+        <member name="F:EP.Ner.Date.DatePointerType.About">
+            <summary>
+            Около, примерно
             </summary>
         </member>
         <member name="F:EP.Ner.Date.DatePointerType.Undefined">
